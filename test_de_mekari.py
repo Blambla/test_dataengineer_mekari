@@ -22,12 +22,12 @@ def main():
     dft['date'] = pd.to_datetime(dft['date'])
     dft['checkin'] = pd.to_datetime(dft['checkin'], format = '%H:%M:%S')
     dft['checkout'] = pd.to_datetime(dft['checkout'], format = '%H:%M:%S')
-    dft['time_interval'] = (dft.checkout - dft.checkin) / pd.Timedelta(hours=1)
-    dft_acc = dft.groupby(['branch_id'])['time_interval'].sum().reset_index()
+    dft['hours_interval'] = (dft.checkout - dft.checkin) / pd.Timedelta(hours=1)
+    dft_acc = dft.groupby(['branch_id'])['hours_interval'].sum().reset_index()
 
     #processing salary per hour
     df = pd.merge(dfe_acc,dft_acc, on='branch_id',how='inner')
-    df['salary_per_hour'] = round(df.total_salary / df.time_interval)
+    df['salary_per_hour'] = round(df.total_salary / df.hours_interval)
     df_final = df[['branch_id','salary_per_hour']]
     
     #show salary per hour each branch

@@ -1,5 +1,7 @@
 # test_dataengineer_mekari
 
+Author: Mochamad Rizal Prasetyo
+
 list of assumptions on employees table:
 1. total month differences between resign_date and join_date is how long the employee work for the branch/company
 2. if the resign date is null, then the date will be replace by current date to determine for how long the employee already work for the branch/company
